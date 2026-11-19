@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IronLog MA ⚡ الجيم والماكلة</title>
+  <style>
+    :root {
+      --bg: #080a08;
+      --card: rgba(255, 255, 255, 0.055);
+      --border: rgba(255, 255, 255, 0.12);
+      --lime: #CCFF00;
+      --cyan: #00F0FF;
+      --text: #F5F7F5;
+      --muted: #A1ABA1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(204, 255, 0, 0.22), transparent 52%),
+        radial-gradient(circle at 90% 85%, rgba(0, 240, 255, 0.12), transparent 45%),
+        var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 22px 16px 40px;
+    }
+    .wrap {
+      width: 100%;
+      max-width: 430px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    /* Top Floating Bar (inspired by FTB.AEP) */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px 10px 16px;
+      background: rgba(18, 20, 18, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      font-size: 16px;
+    }
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #121212;
+      border: 2px solid var(--lime);
+      display: grid;
+      place-items: center;
+      color: var(--lime);
+      font-size: 18px;
+      box-shadow: 0 0 14px rgba(204, 255, 0, 0.25);
+    }
+    .top-btn {
+      background: linear-gradient(135deg, var(--lime), var(--cyan));
+      color: #080a08;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 12px;
+      padding: 9px 16px;
+      border-radius: 12px;
+      letter-spacing: 0.4px;
+    }
+    .bio {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+      padding: 4px 4px 2px;
+    }
+    .bio strong { color: var(--text); }
+
+    /* Pills */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+    .pill span {
+      color: var(--lime);
+      font-weight: 900;
+    }
+
+    /* Highlight Primary CTA */
+    .cta-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #CCFF00, #8CE600);
+      color: #080a08;
+      box-shadow: 0 10px 28px rgba(204, 255, 0, 0.22);
+      transition: transform 0.15s ease;
+    }
+    .cta-card:active { transform: scale(0.98); }
+    .num-dark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #080a08;
+      color: var(--lime);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .cta-title { font-weight: 900; font-size: 15px; }
+    .cta-sub { font-size: 12px; opacity: 0.8; font-weight: 600; margin-top: 2px; }
+
+    /* Glass Link Cards */
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 16px;
+      border-radius: 18px;
+      text-decoration: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      backdrop-filter: blur(12px);
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .link-card:hover { border-color: var(--cyan); }
+    .link-card:active { transform: scale(0.98); }
+    .num-glass {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cyan);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .link-title { font-weight: 800; font-size: 14px; }
+    .link-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Dual Row */
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mini-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 10px;
+      border-radius: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .mini-btn:hover { border-color: var(--lime); }
+
+    /* Bottom 4 Feature Cards */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .stat-box {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 8px;
+      text-align: center;
+    }
+    .stat-big {
+      color: var(--lime);
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+    .stat-lbl {
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 6px;
+      font-weight: 700;
+    }
+    footer {
+      text-align: center;
+      color: #667066;
+      font-size: 11px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">⚡</div>
+        <span>IRONLOG MA</span>
+      </div>
+      <a class="top-btn" href="https://t.me/ironlogma" target="_blank">TELEGRAM</a>
+    </header>
+
+    <p class="bio">
+      <strong>أول تطبيق مغربي للحديد والسعرات الحرارية</strong> — خدام 100% بلا انترنيت فـ لاصال، مع كاميرا AI كتحسب سعرات الطاجين والماكلة المغربية.
+    </p>
+
+    <div class="pills">
+      <div class="pill"><span>100%</span> بلا كونيكسيون</div>
+      <div class="pill"><span>AI</span> كاميرا الوجبات</div>
+      <div class="pill"><span>🇲🇦</span> دارجة / FR / EN</div>
+    </div>
+
+    <a class="cta-card" href="https://apkpure.com/p/com.ayoubjawhar.ironlogma" target="_blank">
+      <div class="num-dark">01</div>
+      <div>
+        <div class="cta-title">حمّل التطبيق من APKPure</div>
+        <div class="cta-sub">النسخة الرسمية المجانية v1.0.1 (Android APK)</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="https://github.com/lhaaj/ironlog-ma/releases/latest" target="_blank">
+      <div class="num-glass">02</div>
+      <div>
+        <div class="link-title">تحميل مباشر من GitHub</div>
+        <div class="link-sub">رابط سريع ومباشر لملف app-release.apk</div>
+      </div>
+    </a>
+
+    <a class="link-card" href="https://t.me/+24Atx22CoaZmYjg0" target="_blank">
+      <div class="num-glass">03</div>
+      <div>
+        <div class="link-title">كروب تليجرام الرسمي 💬</div>
+        <div class="link-sub">نصائح التمرين، التغذية، وطلب كود Premium 👑</div>
+      </div>
+    </a>
+
+    <div class="row-2">
+      <a class="mini-btn" href="https://www.tiktok.com/@ironlog.ma?_r=1&_t=ZS-9BX8Ec9iCzi" target="_blank">🎵 TIKTOK</a>
+      <a class="mini-btn" href="mailto:ayoubjawhar20@gmail.com">✉️ CONTACT</a>
+    </div>
+
+    <section class="grid-4">
+      <div class="stat-box">
+        <div class="stat-big">5<br>FREE</div>
+        <div class="stat-lbl">AI SCANS</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">200<br>DH</div>
+        <div class="stat-lbl">تقدية السيمانة</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">1RM<br>PRO</div>
+        <div class="stat-lbl">حاسبة الأوزان</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-big">🌙<br>RAMADAN</div>
+        <div class="stat-lbl">نظام رمضان</div>
+      </div>
+    </section>
+
+    <footer>IronLog MA • Built by Ayoub Jawhar in Marrakesh 🇲🇦</footer>
+  </main>
+</body>
+</html>
