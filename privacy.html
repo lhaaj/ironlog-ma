@@ -16,7 +16,7 @@
   <h2>1. Local Data Storage</h2>
   <p>Your workout sets, profile metrics (age, height, weight, goals), hydration, and meal preferences are stored locally on your device using SharedPreferences.</p>
   <h2>2. AI Food Camera</h2>
-  <p>When you choose to scan a meal photo, the image is sent over HTTPS through our Cloudflare Worker proxy to the Google Gemini API for nutritional estimation. Do not upload sensitive or personal photos. We use the Gemini API under Google's paid-service terms: according to those terms, Google does not use content sent to paid services to improve its products, and keeps it only for a limited time to detect abuse and meet legal obligations. Processing by Google Gemini API is subject to Google API Terms of Service.</p>
+  <p>When you choose to scan a meal photo, the image is sent over HTTPS through our Cloudflare Worker proxy to the Google Gemini API for nutritional estimation. Do not upload sensitive or personal photos. We use Google's free Gemini API tier. Under Google's terms for that tier, Google may use content sent to it to improve its products, and human reviewers may read it. Processing by Google Gemini API is subject to Google API Terms of Service.</p>
   <h2>3. Security, Rate Limiting & Licensing</h2>
   <p>Our proxy temporarily processes your IP address and an anonymous app-generated device ID in Cloudflare storage (Durable Objects) solely for abuse/rate limiting and single-device activation code binding. Rate-limit counters are deleted automatically every day; activation code bindings are kept until the code is reset.</p>
   <h2>4. Advertising</h2>
